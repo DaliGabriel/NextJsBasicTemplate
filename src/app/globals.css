@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+select option {
+  margin: 40px;
+  background: rgba(80, 140, 192, 0.502);
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.typewriter span {
+  opacity: 0;
+  animation: typing 3s steps(16) forwards; /* 16 letters in "Romantic prompt" */
+}
+
+.typewriter span:nth-child(1) { animation-delay: 0s; }
+.typewriter span:nth-child(2) { animation-delay: 0.15s; }
+.typewriter span:nth-child(3) { animation-delay: 0.3s; }
+.typewriter span:nth-child(4) { animation-delay: 0.45s; } 
+.typewriter span:nth-child(5) { animation-delay: 0.6s; }
+.typewriter span:nth-child(6) { animation-delay: 0.75s; } 
+.typewriter span:nth-child(7) { animation-delay: 0.9s; } 
+.typewriter span:nth-child(8) { animation-delay: 1.05s; }
+.typewriter span:nth-child(9) { animation-delay: 1.2s; } 
+/* ... Continue for all letters ... */
+
+@keyframes typing {
+  to { opacity: 1; }
+}
