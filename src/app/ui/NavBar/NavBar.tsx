@@ -1,11 +1,11 @@
 "use client";
 
 import { Dialog } from "@headlessui/react";
-import { MinusIcon, ArrowsPointingOutIcon } from "@heroicons/react/24/outline";
+import { MinusIcon, ArrowsPointingOutIcon, Bars3BottomLeftIcon, Bars3BottomRightIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import { useState } from "react";
-import Icon from "./Icon";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
+import HeaderLeftIcon from "./HeaderLeftIcon";
 
 interface INavBar {
   showLogin?: boolean;
@@ -26,7 +26,7 @@ const NavBar: React.FC<INavBar> = ({ showLogin, showLogOut, showDashboard }) => 
           className="flex items-center justify-between p-6 lg:px-8"
           aria-label="Nav bar"
         >
-          <Icon height={100} width={100} />
+          <HeaderLeftIcon height={40} width={40} />
 
           <div className="flex lg:hidden">
             <button
@@ -36,7 +36,7 @@ const NavBar: React.FC<INavBar> = ({ showLogin, showLogOut, showDashboard }) => 
             >
               <span className="sr-only">Open main menu</span>
 
-              <ArrowsPointingOutIcon className="h-6 w-6" aria-hidden="true" />
+              <Bars3Icon className="h-10 w-10" aria-hidden="true" />
             </button>
           </div>
 
@@ -46,7 +46,7 @@ const NavBar: React.FC<INavBar> = ({ showLogin, showLogOut, showDashboard }) => 
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-sm font-semibold leading-6 text-gray-900"
+                  className="text-lg font-semibold leading-6 text-gray-900"
                 >
                   {item.name}
                 </Link>
@@ -68,7 +68,7 @@ const NavBar: React.FC<INavBar> = ({ showLogin, showLogOut, showDashboard }) => 
                 onClick={() => {
                   signOut();
                 }}
-                className="text-sm font-semibold leading-6 text-red-500 cursor-pointer"
+                className="text-lg font-semibold leading-6 text-red-500 cursor-pointer"
               >
                 Log out <span aria-hidden="true">&rarr;</span>
               </div>
@@ -80,14 +80,14 @@ const NavBar: React.FC<INavBar> = ({ showLogin, showLogOut, showDashboard }) => 
           <div className="" />
           <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
-              <Icon height={60} width={60} />
+              <HeaderLeftIcon height={40} width={40} />
               <button
                 type="button"
                 className="-m-2.5 rounded-md p-2.5 text-gray-700"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <span className="sr-only">Close menu</span>
-                <MinusIcon className="h-6 w-6" aria-hidden="true" />
+                <MinusIcon className="h-10 w-10" aria-hidden="true" />
               </button>
             </div>
             <div className="mt-6 flow-root">
@@ -117,7 +117,7 @@ const NavBar: React.FC<INavBar> = ({ showLogin, showLogOut, showDashboard }) => 
                       onClick={() => {
                         signOut();
                       }}
-                      className="text-sm font-semibold leading-6 text-red-500 cursor-pointer"
+                      className="text-lg font-semibold leading-6 text-red-500 cursor-pointer"
                     >
                       Log out <span aria-hidden="true">&rarr;</span>
                     </div>

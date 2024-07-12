@@ -28,3 +28,13 @@ select option {
 @keyframes typing {
   to { opacity: 1; }
 }
+
+.pattern {
+  background-color: #000000;
+  opacity: 1;
+  background: linear-gradient(135deg, #45f7a655 25%, transparent 25%) -10px 0/ 20px 20px, 
+            linear-gradient(225deg, #45f7a6 25%, transparent 25%) -10px 0/ 20px 20px,
+            linear-gradient(315deg, #45f7a655 25%, transparent 25%) 0px 0/ 20px 20px,
+            linear-gradient(45deg, #45f7a6 25%, #000000 25%) 0px 0/ 20px 20px;
+  position: relative;
+}

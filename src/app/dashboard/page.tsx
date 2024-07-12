@@ -10,6 +10,7 @@ import {
 import "../globals.css";
 
 function DashboardPage() {
+  
   const [imageForm, setImageForm] = useState<File | null | Blob>(null);
   const [jewelryFamily, setJewelryFamily] = useState<string>("");
   const [image, setImage] = useState<string | ArrayBuffer | null>(null);
