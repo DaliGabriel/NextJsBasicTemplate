@@ -12,7 +12,6 @@ export async function POST(request) {
   const data = await request.formData();
   const imageType = data.get("image").type || "";
   const imageSize = data.get("image").size || "";
-  const jewelryFamily = data.get('jewelryFamily');
 
   if (imageSize > 4000000) {
     return NextResponse.json(
@@ -87,13 +86,8 @@ export async function POST(request) {
     safetySettings: safety_settings,
   });
 
-    // const prompt =
-    // "Give me a concise and short description of this image of " + jewelryFamily +", using heartwarming words.";
-
     const prompt =
-    "You are a copywriter expert on jewelry. Give me a concise and short description of this image of " + jewelryFamily + ", using different words, only describe the jewelry, its colors and shapes and don’t write much about how to use it. Change the golden word for 18-karat gold and the silver word for platinum.";
-
-
+    "You are a copywriter expert on jewelry. Give me a concise and short description of this image of, using different words, only describe the jewelry, its colors and shapes and don’t write much about how to use it. Change the golden word for 18-karat gold and the silver word for platinum.";
   const imageParts = [await blobToGenerativePart(ImageRequestFile, imageType)];
 
   const result = await model.generateContent([prompt, ...imageParts]);
@@ -115,28 +109,6 @@ export async function POST(request) {
     
   }
 
-
-  // if (text) {
-  //   responsejson = { message: text };
-
-  //   if (
-  //     text.includes("**English prompt:**") &&
-  //     text.includes("**Spanish prompt:**")
-  //   ) {
-  //     let splitText = text.split("**Spanish prompt:**");
-
-  //     let englishPrompt = splitText[0]
-  //       .replace("**English prompt:**", "")
-  //       .trim();
-  //     let spanishPrompt = splitText[1].trim();
-
-  //     responsejson = { message: englishPrompt, spanishMessage: spanishPrompt };
-
-  //     // console.log({ englishPrompt, spanishPrompt }); // English text
-  //   }
-  // } else {
-  //   return NextResponse.json({ message: "Try it again" }, { status: 400 });
-  // }
 
   // Wait for 1 second before processing the request
   await new Promise((resolve) => setTimeout(resolve, 1000));

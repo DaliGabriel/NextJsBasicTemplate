@@ -7,8 +7,8 @@ import NavBar from "./ui/NavBar/NavBar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Romantic  prompt",
-  description: "Romantic prompt",
+  title: "Template",
+  description: "Template",
 };
 
 export default function RootLayout({

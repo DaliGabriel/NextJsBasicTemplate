@@ -1,18 +1,17 @@
 "use client";
-import { ChangeEvent, FormEvent, useState } from "react";
-import NavBar from "../ui/NavBar/NavBar";
-import Image from "next/image";
 import {
   CheckIcon,
   ClipboardDocumentListIcon,
 } from "@heroicons/react/24/outline";
+import Image from "next/image";
+import { ChangeEvent, FormEvent, useState } from "react";
+import NavBar from "../ui/NavBar/NavBar";
 
 import "../globals.css";
+import BackgroundShape from "../ui/Components/BackgroundShape";
 
 function DashboardPage() {
-  
   const [imageForm, setImageForm] = useState<File | null | Blob>(null);
-  const [jewelryFamily, setJewelryFamily] = useState<string>("");
   const [image, setImage] = useState<string | ArrayBuffer | null>(null);
   const [textResponse, setTextResponse] = useState<string | null>(null);
   const [textResponseSpanish, setTextResponseSpanish] = useState<string | null>(
@@ -22,10 +21,6 @@ function DashboardPage() {
   const [isCopyText, setIsCopyText] = useState<boolean>(false);
   const [isCopySpanishText, setIsCopySpanishText] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-
-  const handleJewelryFamilyChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setJewelryFamily(e.target.value);
-  };
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -51,14 +46,6 @@ function DashboardPage() {
 
     // Create a new FormData instance
     const formData = new FormData();
-
-    if (jewelryFamily == "") {
-      setError("You need to choice a jewelry family");
-      setLoading(false);
-      return;
-    } else {
-      formData.append("jewelryFamily", jewelryFamily);
-    }
 
     // Append the image file to the form data
     if (imageForm) {
@@ -141,40 +128,7 @@ function DashboardPage() {
     <>
       <NavBar showLogOut={true} />
       <section className="relative overflow-hidden bg-gradient-to-b from-blue-50 via-transparent to-transparent pb-12 pt-20 sm:pb-16 sm:pt-32 lg:pb-24 xl:pb-32 xl:pt-40">
-        <div className="relative z-10">
-          <div className="absolute inset-x-0 top-1/2 -z-10 flex -translate-y-1/2 justify-center overflow-hidden [mask-image:radial-gradient(50%_45%_at_50%_55%,white,transparent)]">
-            <svg
-              className="h-[60rem] w-[100rem] flex-none stroke-blue-600 opacity-20"
-              aria-hidden="true"
-            >
-              <defs>
-                <pattern
-                  id="e9033f3e-f665-41a6-84ef-756f6778e6fe"
-                  width="200"
-                  height="200"
-                  x="50%"
-                  y="50%"
-                  patternUnits="userSpaceOnUse"
-                  patternTransform="translate(-100 0)"
-                >
-                  <path d="M.5 200V.5H200" fill="none"></path>
-                </pattern>
-              </defs>
-              <svg x="50%" y="50%" className="overflow-visible fill-blue-50">
-                <path
-                  d="M-300 0h201v201h-201Z M300 200h201v201h-201Z"
-                  strokeWidth="0"
-                ></path>
-              </svg>
-              <rect
-                width="100%"
-                height="100%"
-                strokeWidth="0"
-                fill="url(#e9033f3e-f665-41a6-84ef-756f6778e6fe)"
-              ></rect>
-            </svg>
-          </div>
-        </div>
+        <BackgroundShape />
         <div className="relative z-20 mx-auto max-w-7xl px-6">
           <div className="mx-auto max-w-2xl text-center">
             <div className=" flex  justify-center bg-no-repeat bg-cover  items-center">
@@ -187,30 +141,8 @@ function DashboardPage() {
                     Upload your image!
                   </h2>
                   <h3 className="mt-5 text-2xl font-bold text-gray-500">
-                    To get the romantic prompt
+                    To get the info
                   </h3>
-                </div>
-
-                <div className="mt-4">
-                  <select
-                    onChange={handleJewelryFamilyChange}
-                    name="jewerlyFamily"
-                    className="rounded h-10 cursor-pointer text-white px-2"
-                    style={{ backgroundColor: "#2563eb" }}
-                    value={jewelryFamily}
-                  >
-                    <option value="" disabled hidden>
-                      Choose jewelry family
-                    </option>
-                    <option value="necklace">Collar</option>
-                    <option value="earring">Arete</option>
-                    <option value="ring">Anillo</option>
-                    <option value="chain">Cadena</option>
-                    <option value="locket">Dije</option>
-                    <option value="bracelet">Pulsera</option>
-                    <option value="clock">Reloj</option>
-                    <option value="glasses">Lente</option>
-                  </select>
                 </div>
 
                 {error && (
@@ -241,7 +173,7 @@ function DashboardPage() {
                           <div className="flex flex-auto max-h-48 w-2/5 mx-auto -mt-10">
                             <Image
                               className="has-mask h-36 object-center my-5"
-                              src={image ? (image as string) : "./image.svg"}
+                              src={image ? (image as string) : "./defaultImage.svg"}
                               alt="freepik image"
                               height={300}
                               width={300}
@@ -253,7 +185,7 @@ function DashboardPage() {
                               <p className="pointer-none text-gray-500">
                                 <span className="text-sm">Drag and drop</span>{" "}
                                 files here <br /> or{" "}
-                                <span className="text-blue-600 hover:underline">
+                                <span className="text-green-600 hover:underline">
                                   select a file
                                 </span>{" "}
                               </p>
@@ -274,11 +206,11 @@ function DashboardPage() {
                       </label>
                     </div>
 
-                    <div style={{marginTop:'20px'}}>
+                    <div style={{ marginTop: "20px" }}>
                       <button
                         disabled={!image}
                         type="submit"
-                        className="isomorphic-link isomorphic-link--internal inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-lg font-semibold text-white shadow-sm transition-all duration-150 hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                        className="isomorphic-link isomorphic-link--internal inline-flex items-center justify-center gap-2 rounded-xl bg-green-600 px-4 py-3 text-lg font-semibold text-white shadow-sm transition-all duration-150 hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
                       >
                         Upload
                         <svg
